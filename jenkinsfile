@@ -20,7 +20,7 @@ pipeline {
         nexusUrl: '13.233.56.150:8081',
         nexusVersion: 'nexus3',
         protocol: 'http',
-        repository: 'http://13.233.56.150:8081/repository/simple-app-1/',
+        repository: 'http://13.233.56.150:8081/repository/simple-app-1',
         version: '3.0.0'
     }
 }
