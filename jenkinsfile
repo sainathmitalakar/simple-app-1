@@ -10,21 +10,17 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'mygithub', url: 'https://github.com/sainathmitalakar/simple-app-1.git']]])
             }
         }
-    }
-    stages{
-        stage('upload a war file')
-        {
-            nexusArtifactUploader artifacts: [[artifactId: 'simple-app', 
-            classifier: '', 
-            file: 'target/simple-app-3.0.0.war',
-            type: 'war']], 
-            credentialsId: '08e84467-bf0e-4029-908a-c0513175594d',
-            groupId: 'in.javahome',
-            nexusUrl: '15.207.20.56',
-            nexusVersion: 'nexus2', 
-            protocol: 'http',
-            repository: 'http://15.207.20.56:8081/repository/simple-app-release/', 
-            version: '3.0.0'
-        }
+        stage('upload a war to Nexus')
+        nexusArtifactUploader artifacts: [[artifactId: 'simple-app',
+        classifier: '',
+        file: 'target/simple-app-3.0.0.war',
+        type: 'war']],
+        credentialsId: 'nexus3',
+        groupId: 'in.javahome',
+        nexusUrl: '13.233.56.150:8081',
+        nexusVersion: 'nexus3',
+        protocol: 'http',
+        repository: 'http://13.233.56.150:8081/repository/simple-app-1/',
+        version: '3.0.0'
     }
 }
